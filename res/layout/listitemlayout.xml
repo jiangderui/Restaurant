@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+       android:orientation="horizontal"  
+       android:layout_width="fill_parent"  
+       android:layout_height="wrap_content">
+
+       <TextView
+          android:id="@+id/listitemdate"
+          android:layout_width="wrap_content"  
+          android:layout_height="wrap_content"
+          android:layout_margin="5dp"
+          android:textColor="#000000"
+          android:text="年-月-日"/>
+    
+       <TextView
+          android:id="@+id/listitemincome"
+          android:layout_width="wrap_content"  
+          android:layout_height="wrap_content"
+          android:layout_margin="5dp"
+          android:textColor="#000000"
+          android:text="收入"/>
+        
+        <TextView
+          android:id="@+id/listitemgreens"
+          android:layout_width="wrap_content"  
+          android:layout_height="wrap_content"
+          android:layout_margin="5dp"
+          android:textColor="#000000"
+          android:text="菜"/>
+        <TextView
+          android:id="@+id/listitemrices"
+          android:layout_width="wrap_content"  
+          android:layout_height="wrap_content"
+          android:layout_margin="5dp"
+          android:textColor="#000000"
+          android:text="米"/>  
+        <TextView
+          android:id="@+id/listitemoil"
+          android:layout_width="wrap_content"  
+          android:layout_height="wrap_content"
+          android:layout_margin="5dp"
+          android:textColor="#000000"
+          android:text="油"/>  
+        <TextView
+          android:id="@+id/listitembunkers"
+          android:layout_width="wrap_content"  
+          android:layout_height="wrap_content"
+          android:layout_margin="5dp"
+          android:textColor="#000000"
+          android:text="燃料"/>  
+        <TextView
+          android:id="@+id/listitemflavour"
+          android:layout_width="wrap_content"  
+          android:layout_height="wrap_content"
+          android:layout_margin="5dp"
+          android:textColor="#000000"
+          android:text="调料"/>  
+        <TextView
+          android:id="@+id/listitemother"
+          android:layout_width="wrap_content"  
+          android:layout_height="wrap_content"
+          android:layout_margin="5dp"
+          android:textColor="#000000"
+          android:text="其它"/>  
+
+	
+</LinearLayout>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    <LinearLayout  
+       android:orientation="horizontal"  
+       android:layout_width="fill_parent"  
+       android:layout_height="wrap_content">  
+       <TextView
+          android:layout_width="wrap_content"  
+          android:layout_height="wrap_content"
+          android:layout_margin="5dp"
+          android:text="年-月-日"/>
+       
+       <TextView
+          android:layout_width="wrap_content"  
+          android:layout_height="wrap_content"
+          android:layout_margin="5dp"
+          android:text="收入"/>
+       
+        <TextView
+          android:layout_width="wrap_content"  
+          android:layout_height="wrap_content"
+          android:layout_margin="5dp"
+          android:text="菜"/>
+        <TextView
+          android:layout_width="wrap_content"  
+          android:layout_height="wrap_content"
+          android:layout_margin="5dp"
+          android:text="米"/>  
+        <TextView
+          android:layout_width="wrap_content"  
+          android:layout_height="wrap_content"
+          android:layout_margin="5dp"
+          android:text="油"/>  
+        <TextView
+          android:layout_width="wrap_content"  
+          android:layout_height="wrap_content"
+          android:layout_margin="5dp"
+          android:text="燃料"/>  
+        <TextView
+          android:layout_width="wrap_content"  
+          android:layout_height="wrap_content"
+          android:layout_margin="5dp"
+          android:text="调料"/>  
+        <TextView
+          android:layout_width="wrap_content"  
+          android:layout_height="wrap_content"
+          android:layout_margin="5dp"
+          android:text="其它"/>  
+        </LinearLayout>
+    
+    <ListView
+        android:id="@+id/detailslist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </ListView>
+   	<Button android:id="@+id/monthanalyze"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="分析"/>       
+    
+</LinearLayout>

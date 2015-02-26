@@ -77,9 +77,12 @@ public class DefineDetailsFragment extends Fragment {
 	    iBunkersTotal = 0;
 	    iFlavourTotal = 0;
 	    iOtherTotal   = 0;
+	    if (cur.getCount() == 0)
+	    {
+	    	return;
+	    }
 	    
         do {  
-        	
         	iIncomeTotal = iIncomeTotal + cur.getInt(cur.getColumnIndex("income"));
         	iGreensTotal = iGreensTotal + cur.getInt(cur.getColumnIndex("greens"));
         	iRicesTotal = iRicesTotal + cur.getInt(cur.getColumnIndex("rices"));

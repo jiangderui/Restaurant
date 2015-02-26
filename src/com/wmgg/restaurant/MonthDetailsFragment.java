@@ -76,6 +76,10 @@ public class MonthDetailsFragment extends Fragment {
 	    iBunkersTotal = 0;
 	    iFlavourTotal = 0;
 	    iOtherTotal   = 0;
+	    if (cur.getCount() == 0)
+	    {
+	    	return;
+	    }
 	    
         do {  
         	

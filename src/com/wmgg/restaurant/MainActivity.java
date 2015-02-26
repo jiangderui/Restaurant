@@ -49,6 +49,11 @@ public class MainActivity extends FragmentActivity {
 						res.getDrawable(R.drawable.tab_icon_03));
 		mTabHost.addTab(spec, DefineDetailsFragment.class, null);
 		
+		spec = mTabHost
+				.newTabSpec("流水")
+				.setIndicator("流水",
+						res.getDrawable(R.drawable.tab_icon_03));
+		mTabHost.addTab(spec, WatercourseFragment.class, null);
 		Log.e("MainActivity", "Line 59");
 		//set tab which one you want open first time 0 or 1 or 2
 		mTabHost.setCurrentTab(0);	}

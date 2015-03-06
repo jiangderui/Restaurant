@@ -36,7 +36,8 @@ public class DataAnalyzeActivity extends Activity {
 		((TextView)findViewById(R.id.analyzebunkers)).setText("燃料   " + iBunkersTotal.toString());
 		((TextView)findViewById(R.id.analyzeflavour)).setText("调料   " + iFlavourTotal.toString());
 		((TextView)findViewById(R.id.analyzeother)).setText("其它   " + iOtherTotal.toString());
-		((TextView)findViewById(R.id.analyzepctotal)).setText("生产成本" + iPCTotal.toString());
+		((TextView)findViewById(R.id.analyzepctotal)).setText("生产成本 " + iPCTotal.toString());
+		((TextView)findViewById(R.id.analyzegrossincome)).setText("毛收入 "+(new Integer(iIncomeTotal - iPCTotal).toString()));
 		((TextView)findViewById(R.id.analyzegrossrate)).setText("毛利率"+(new Double(dbRate).toString()));
 	}
 

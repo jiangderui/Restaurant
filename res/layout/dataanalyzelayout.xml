@@ -26,6 +26,7 @@
        android:layout_margin="5dp"
        android:textColor="#000000"
        android:text="米"/>
+     
      <TextView
        android:id="@+id/analyzeoil"
        android:layout_width="wrap_content"  
@@ -33,6 +34,7 @@
        android:layout_margin="5dp"
        android:textColor="#000000"
        android:text="油"/>  
+       
      <TextView
        android:id="@+id/analyzebunkers"
        android:layout_width="wrap_content"  
@@ -40,6 +42,7 @@
        android:layout_margin="5dp"
        android:textColor="#000000"
        android:text="燃料"/>  
+       
      <TextView
        android:id="@+id/analyzeflavour"
        android:layout_width="wrap_content"  
@@ -47,6 +50,7 @@
        android:layout_margin="5dp"
        android:textColor="#000000"
        android:text="调料"/>  
+       
      <TextView
        android:id="@+id/analyzeother"
        android:layout_width="wrap_content"  
@@ -54,6 +58,7 @@
        android:layout_margin="5dp"
        android:textColor="#000000"
        android:text="其它"/>  
+       
      <TextView
        android:id="@+id/analyzepctotal"
        android:layout_width="wrap_content"  
@@ -61,6 +66,7 @@
        android:layout_margin="5dp"
        android:textColor="#000000"
        android:text="生产成本"/>  
+       
      <TextView
        android:id="@+id/analyzetctotal"
        android:layout_width="wrap_content"  
@@ -68,6 +74,15 @@
        android:layout_margin="5dp"
        android:textColor="#000000"
        android:text="总成本"/>  
+       
+     <TextView
+       android:id="@+id/analyzegrossincome"
+       android:layout_width="wrap_content"  
+       android:layout_height="wrap_content"
+       android:layout_margin="5dp"
+       android:textColor="#000000"
+       android:text="毛收入"/>  
+       
      <TextView
        android:id="@+id/analyzegrossrate"
        android:layout_width="wrap_content"  
@@ -75,4 +90,5 @@
        android:layout_margin="5dp"
        android:textColor="#000000"
        android:text="毛利"/>  
+
 </LinearLayout>

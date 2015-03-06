@@ -1,5 +1,10 @@
 <resources>
 
     <string name="app_name">Restaurant</string>
-
+    <string name="builder_message">收入为零，继续记账？</string>
+    <string name="notice_insert_sdcard_message">请插入SDCard。</string>
+    <string name="ok">确定</string>
+    <string name="cancel">取消</string>
+    
+    
 </resources>

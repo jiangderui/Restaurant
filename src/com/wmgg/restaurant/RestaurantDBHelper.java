@@ -6,11 +6,13 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.content.Context;
+import android.os.Environment;
 import android.widget.Toast;
 
 public class RestaurantDBHelper extends SQLiteOpenHelper {
 	private static final int DATABASE_VERSION = 1;
-	private static final String DATABASE_NAME="/sdcard/restaurant";
+	private static final String strSDCardPath = Environment.getExternalStorageDirectory().toString();
+	private static final String DATABASE_NAME=strSDCardPath + "/restaurant";
 	
 	private static final int RESTAURANT_SUCCESS = 0;
 	private static final int RESTAURANT_FAILURE = 1;

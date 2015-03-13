@@ -99,6 +99,7 @@ public class MonthDetailsFragment extends Fragment {
 	     intent.putExtra("iBunkersTotal", iBunkersTotal);
 	     intent.putExtra("iFlavourTotal", iFlavourTotal);
 	     intent.putExtra("iOtherTotal", iOtherTotal);
+	     intent.putExtra("iRecordCount", cur.getCount());
 
 	     //第一个参数为"从那里"，第二个参数为"到那里"
 	     intent.setClass(getActivity(), DataAnalyzeActivity.class);

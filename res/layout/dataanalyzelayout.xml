@@ -91,4 +91,12 @@
        android:textColor="#000000"
        android:text="毛利"/>  
 
+    <TextView
+       android:id="@+id/analyzedaycount"
+       android:layout_width="wrap_content"  
+       android:layout_height="wrap_content"
+       android:layout_margin="5dp"
+       android:textColor="#000000"
+       android:text="天数"/>  
+     
 </LinearLayout>

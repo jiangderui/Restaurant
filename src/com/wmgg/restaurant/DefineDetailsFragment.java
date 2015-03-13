@@ -12,15 +12,29 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
+import android.app.DatePickerDialog;
 import android.content.Intent;
 
 public class DefineDetailsFragment extends Fragment {
 	private RestaurantDBHelper mDBHelper;
 	private ListView listView;
-	private Button  mButton;
+	private Button  mAnalyzeButton;
+	private Button  mStartDateButton;
+	private Button  mEndDateButton;
 	private Cursor cur;
+    private Calendar mCal = null;
+    private DatePickerDialog mStartDatePDlg;
+    private DatePickerDialog mEndDatePDlg;
+    private String mStartDate;
+    private String mEndDate;
+    private TextView mItemStartDay;
+    private TextView mItemEndDay;
+    private String formattedDate;
+    private String formattedDate1;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -32,26 +46,22 @@ public class DefineDetailsFragment extends Fragment {
 
     	mDBHelper = new RestaurantDBHelper(getActivity(), null, null, 1);
     	mDBHelper.setDatabase(mDBHelper.getWritableDatabase());
-    	Calendar c = Calendar.getInstance();
+    	mCal = Calendar.getInstance();
     	 
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM");
-        String formattedDate = df.format(c.getTime()); 
+        formattedDate = df.format(mCal.getTime()); 
         formattedDate = formattedDate+"-14";
 
-        c.add(Calendar.MONTH, -1);
+        mCal.add(Calendar.MONTH, -1);
         SimpleDateFormat df1 = new SimpleDateFormat("yyyy-MM");
-        String formattedDate1 = df.format(c.getTime());
+        formattedDate1 = df.format(mCal.getTime());
         formattedDate1= formattedDate1+"-15";
-        
-    	String strSQL = "select _id, today,income,greens,rices,oil,bunkers,flavour,other from todayaccount where today between " + "'"+formattedDate1 +"'"+ " and "+"'" +formattedDate+"'";
-    	Log.e("definedetailsfragment", strSQL);
-    	cur=mDBHelper.rawQueryData(strSQL);
+    	mItemStartDay = (TextView)v.findViewById(R.id.itemstartday);
+    	mItemEndDay   = (TextView)v.findViewById(R.id.itemendday);
     	
-	    SimpleCursorAdapter adapter = new SimpleCursorAdapter(getActivity().getApplicationContext(), R.layout.listitemlayout,cur,new String[]{"today", "income", "greens", "rices", "oil","bunkers","flavour","other"},new int[]{R.id.listitemdate,R.id.listitemincome, R.id.listitemgreens, R.id.listitemrices, R.id.listitemoil, R.id.listitembunkers,R.id.listitemflavour,R.id.listitemother},SimpleCursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
-		listView.setAdapter(adapter);
-        mButton = (Button) v.findViewById(R.id.analyze);
+		mAnalyzeButton = (Button) v.findViewById(R.id.analyze);
 
-        mButton.setOnClickListener(new View.OnClickListener() {
+		mAnalyzeButton.setOnClickListener(new View.OnClickListener() {
         	
         	@Override  
         	public void onClick(View v){
@@ -59,7 +69,58 @@ public class DefineDetailsFragment extends Fragment {
         	}
         });        
     	
+
+		mStartDateButton = (Button) v.findViewById(R.id.pickstartdate);
+
+		mStartDateButton.setOnClickListener(new View.OnClickListener() {
+        	
+        	@Override  
+        	public void onClick(View v){
+        		mStartDatePDlg.show();
+        	}
+        });        
+    	
+		mEndDateButton = (Button) v.findViewById(R.id.pickenddate);
+
+		mEndDateButton.setOnClickListener(new View.OnClickListener() {
+        	
+        	@Override  
+        	public void onClick(View v){
+        		mEndDatePDlg.show();
+        	}
+        });        
+    	
 		
+        mStartDatePDlg = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener()
+        {
+        	@Override
+        	public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth)
+        	{
+        		int iMonth = monthOfYear + 1;
+        		//formattedDate = year + "-" + iMonth + "-" + dayOfMonth;
+        		
+        		mStartDate = String.format("%04d-%02d-%02d", year, iMonth, dayOfMonth);
+        		mItemStartDay.setText(mStartDate);
+        		onQueryData();
+        		
+        	}
+        }, mCal.get(Calendar.YEAR),mCal.get(Calendar.MONTH)+1,mCal.get(Calendar.DAY_OF_MONTH));
+        
+        mEndDatePDlg = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener()
+        {
+        	@Override
+        	public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth)
+        	{
+        		int iMonth = monthOfYear + 1;
+        		//formattedDate = year + "-" + iMonth + "-" + dayOfMonth;
+        		
+        		mEndDate = String.format("%04d-%02d-%02d", year, iMonth, dayOfMonth);
+        		mItemEndDay.setText(mEndDate);
+        		onQueryData();
+        		
+        	}
+        }, mCal.get(Calendar.YEAR),mCal.get(Calendar.MONTH)+1,mCal.get(Calendar.DAY_OF_MONTH));
+        onQueryData();
 		return v;
 	}
 	
@@ -99,6 +160,7 @@ public class DefineDetailsFragment extends Fragment {
 	     intent.putExtra("iBunkersTotal", iBunkersTotal);
 	     intent.putExtra("iFlavourTotal", iFlavourTotal);
 	     intent.putExtra("iOtherTotal", iOtherTotal);
+	     intent.putExtra("iRecordCount", cur.getCount());
 
 	     //第一个参数为"从那里"，第二个参数为"到那里"
 	     intent.setClass(getActivity(), DataAnalyzeActivity.class);
@@ -106,5 +168,25 @@ public class DefineDetailsFragment extends Fragment {
 	     //执行跳转
 	     getActivity().startActivity(intent);	
 	 }
+	
+    public void onQueryData()
+    {
+    	String strSQL = null;
+        if (mStartDate == null || mEndDate == null)
+        {
+        	strSQL = "select _id, today,income,greens,rices,oil,bunkers,flavour,other from todayaccount where today between " + "'"+formattedDate1 +"'"+ " and "+"'" +formattedDate+"'";
+        }
+        else
+        {
+        	strSQL = "select _id, today,income,greens,rices,oil,bunkers,flavour,other from todayaccount where today between " + "'"+mStartDate +"'"+ " and "+"'" +mEndDate+"'";
+        }
+        
+     	Log.e("WatercourseFragment", strSQL);
+    	cur=mDBHelper.rawQueryData(strSQL);
+    	
+	    SimpleCursorAdapter adapter = new SimpleCursorAdapter(getActivity().getApplicationContext(), R.layout.listitemlayout,cur,new String[]{"today", "income", "greens", "rices", "oil","bunkers","flavour","other"},new int[]{R.id.listitemdate,R.id.listitemincome, R.id.listitemgreens, R.id.listitemrices, R.id.listitemoil, R.id.listitembunkers,R.id.listitemflavour,R.id.listitemother},SimpleCursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
+		listView.setAdapter(adapter);
+    }
+	
 
 }

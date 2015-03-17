@@ -14,7 +14,10 @@ import android.widget.Toast;
 
 public class MainActivity extends FragmentActivity {
 	
+	private static final int RESTAURANT_SUCCESS = 0;
+	private static final int RESTAURANT_FAILURE = 1;
 	private FragmentTabHost mTabHost;
+	private RestaurantDBHelper mDBHelper;
 	
     private boolean ExistSDCard() {  
 	      if (android.os.Environment.getExternalStorageState().equals(  
@@ -53,7 +56,22 @@ public class MainActivity extends FragmentActivity {
 		}
 		
 		setContentView(R.layout.main);
+		CreateTodayTable();
 		initView();
+	}
+	
+	private void CreateTodayTable()
+	{
+		String mTodayTable = "CREATE TABLE todayaccount ( _id integer PRIMARY KEY autoincrement, today date UNIQUE, income INTEGER, greens INTEGER, rices INTEGER, oil INTEGER, bunkers INTEGER, flavour INTEGER, other INTEGER);";
+    	mDBHelper = new RestaurantDBHelper(this, null, null, 1);
+    	mDBHelper.setDatabase(mDBHelper.getWritableDatabase());
+    	if (RESTAURANT_FAILURE == mDBHelper.isTableExists("todayaccount"))
+    	{
+    		mDBHelper.execSQL(mTodayTable);
+    	}
+    	
+    	mDBHelper.close();
+
 	}
 	
 	private void initView()

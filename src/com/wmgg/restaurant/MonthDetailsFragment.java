@@ -107,6 +107,13 @@ public class MonthDetailsFragment extends Fragment {
 	     //执行跳转
 	     getActivity().startActivity(intent);	
 	 }
+	
+	  public void onDestroyView()
+	  {
+		  cur.close();
+		  mDBHelper.closeDB();
+		  super.onDestroyView();
+	  }
 
 	
 }

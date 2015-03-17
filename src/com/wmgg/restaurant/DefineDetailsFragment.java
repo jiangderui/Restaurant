@@ -188,5 +188,11 @@ public class DefineDetailsFragment extends Fragment {
 		listView.setAdapter(adapter);
     }
 	
+	  public void onDestroyView()
+	  {
+		  cur.close();
+		  mDBHelper.closeDB();
+		  super.onDestroyView();
+	  }
 
 }

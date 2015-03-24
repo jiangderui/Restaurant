@@ -33,13 +33,13 @@ public class DefineDetailsFragment extends Fragment {
     private String mEndDate;
     private TextView mItemStartDay;
     private TextView mItemEndDay;
-    private String formattedDate;
-    private String formattedDate1;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		
+		int iDay = 0;
+		Calendar mCalIn = null;
+		SimpleDateFormat df;
 		View v = inflater.inflate(R.layout.definedetailslayout, null);
 		
 		listView = (ListView) v.findViewById(R.id.detailslist);
@@ -47,15 +47,29 @@ public class DefineDetailsFragment extends Fragment {
     	mDBHelper = new RestaurantDBHelper(getActivity(), null, null, 1);
     	mDBHelper.setDatabase(mDBHelper.getWritableDatabase());
     	mCal = Calendar.getInstance();
-    	 
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM");
-        formattedDate = df.format(mCal.getTime()); 
-        formattedDate = formattedDate+"-14";
-
-        mCal.add(Calendar.MONTH, -1);
-        SimpleDateFormat df1 = new SimpleDateFormat("yyyy-MM");
-        formattedDate1 = df.format(mCal.getTime());
-        formattedDate1= formattedDate1+"-15";
+    	mCalIn = Calendar.getInstance();
+    	
+    	iDay = mCal.get(Calendar.DAY_OF_MONTH);
+    	if (iDay < 15)
+    	{
+	        df = new SimpleDateFormat("yyyy-MM");
+	        mStartDate = df.format(mCalIn.getTime()); 
+	        mStartDate = mStartDate+"-14";
+	
+	        mCalIn.add(Calendar.MONTH, -1);
+	        mEndDate = df.format(mCalIn.getTime());
+	        mEndDate= mEndDate+"-15";
+    	}
+    	else
+    	{
+	        df = new SimpleDateFormat("yyyy-MM");
+	        mStartDate = df.format(mCalIn.getTime()); 
+	        mStartDate = mStartDate+"-15";
+	
+	        mCalIn.add(Calendar.MONTH, 1);
+	        mEndDate = df.format(mCalIn.getTime());
+	        mEndDate= mEndDate+"-14";
+    	}
     	mItemStartDay = (TextView)v.findViewById(R.id.itemstartday);
     	mItemEndDay   = (TextView)v.findViewById(R.id.itemendday);
     	
@@ -104,7 +118,7 @@ public class DefineDetailsFragment extends Fragment {
         		onQueryData();
         		
         	}
-        }, mCal.get(Calendar.YEAR),mCal.get(Calendar.MONTH)+1,mCal.get(Calendar.DAY_OF_MONTH));
+        }, mCal.get(Calendar.YEAR),mCal.get(Calendar.MONTH),mCal.get(Calendar.DAY_OF_MONTH));
         
         mEndDatePDlg = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener()
         {
@@ -119,7 +133,7 @@ public class DefineDetailsFragment extends Fragment {
         		onQueryData();
         		
         	}
-        }, mCal.get(Calendar.YEAR),mCal.get(Calendar.MONTH)+1,mCal.get(Calendar.DAY_OF_MONTH));
+        }, mCal.get(Calendar.YEAR),mCal.get(Calendar.MONTH),mCal.get(Calendar.DAY_OF_MONTH));
         onQueryData();
 		return v;
 	}
@@ -172,14 +186,7 @@ public class DefineDetailsFragment extends Fragment {
     public void onQueryData()
     {
     	String strSQL = null;
-        if (mStartDate == null || mEndDate == null)
-        {
-        	strSQL = "select _id, today,income,greens,rices,oil,bunkers,flavour,other from todayaccount where today between " + "'"+formattedDate1 +"'"+ " and "+"'" +formattedDate+"'";
-        }
-        else
-        {
-        	strSQL = "select _id, today,income,greens,rices,oil,bunkers,flavour,other from todayaccount where today between " + "'"+mStartDate +"'"+ " and "+"'" +mEndDate+"'";
-        }
+        strSQL = "select _id, today,income,greens,rices,oil,bunkers,flavour,other from todayaccount where today between " + "'"+mStartDate +"'"+ " and "+"'" +mEndDate+"'";
         
      	Log.e("WatercourseFragment", strSQL);
     	cur=mDBHelper.rawQueryData(strSQL);

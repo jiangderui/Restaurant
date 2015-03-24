@@ -71,7 +71,6 @@ public class MainActivity extends FragmentActivity {
     	}
     	
     	mDBHelper.close();
-
 	}
 	
 	private void initView()

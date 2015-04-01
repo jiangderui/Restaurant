@@ -490,13 +490,17 @@ public final class R {
         public static final int definedother=0x7f070018;
         public static final int definedrices=0x7f070014;
         public static final int detailslist=0x7f070019;
-        public static final int itemdelete=0x7f070028;
-        public static final int itemdescribe=0x7f070025;
+        public static final int get_database=0x7f070024;
+        public static final int itemdelete=0x7f070032;
+        public static final int itemdescribe=0x7f070028;
         public static final int itemendday=0x7f07000f;
-        public static final int itemprice=0x7f070026;
-        public static final int itemsave=0x7f070027;
+        public static final int itemprice=0x7f070030;
+        public static final int itemremarks=0x7f07002a;
+        public static final int itemsave=0x7f070031;
         public static final int itemstartday=0x7f07000d;
-        public static final int itemtoday=0x7f070023;
+        public static final int itemtoday=0x7f070026;
+        public static final int itemunitprice=0x7f07002c;
+        public static final int itemweight=0x7f07002e;
         public static final int listitembunkers=0x7f07001f;
         public static final int listitemdate=0x7f07001a;
         public static final int listitemflavour=0x7f070020;
@@ -506,14 +510,23 @@ public final class R {
         public static final int listitemother=0x7f070021;
         public static final int listitemrices=0x7f07001d;
         public static final int monthanalyze=0x7f070022;
-        public static final int pickdate=0x7f070024;
+        public static final int pickdate=0x7f070027;
         public static final int pickenddate=0x7f070010;
         public static final int pickstartdate=0x7f07000e;
-        public static final int tally=0x7f070029;
-        public static final int watercourselist=0x7f07002a;
-        public static final int wclistitemdate=0x7f07002b;
-        public static final int wclistitemdesc=0x7f07002c;
-        public static final int wclistitemprice=0x7f07002d;
+        public static final int pricenoticetext=0x7f07002f;
+        public static final int remarkstext=0x7f070029;
+        public static final int start_server=0x7f070023;
+        public static final int status_text=0x7f070025;
+        public static final int tally=0x7f070033;
+        public static final int unitpricetext=0x7f07002b;
+        public static final int watercourselist=0x7f070034;
+        public static final int wclistitemdate=0x7f070035;
+        public static final int wclistitemdesc=0x7f070036;
+        public static final int wclistitemprice=0x7f070037;
+        public static final int wclistitemremarks=0x7f070038;
+        public static final int wclistitemunitprice=0x7f070039;
+        public static final int wclistitemweight=0x7f07003a;
+        public static final int weighttext=0x7f07002d;
     }
     public static final class layout {
         public static final int dataanalyzelayout=0x7f030000;
@@ -521,8 +534,9 @@ public final class R {
         public static final int listitemlayout=0x7f030002;
         public static final int main=0x7f030003;
         public static final int monthdetailslayout=0x7f030004;
-        public static final int watercourselayout=0x7f030005;
-        public static final int watercourselstitlayout=0x7f030006;
+        public static final int setting=0x7f030005;
+        public static final int watercourselayout=0x7f030006;
+        public static final int watercourselstitlayout=0x7f030007;
     }
     public static final class string {
         public static final int app_name=0x7f050000;

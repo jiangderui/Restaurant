@@ -38,7 +38,6 @@ public class MonthDetailsFragment extends Fragment {
         formattedDate = formattedMonth+"-01";
 
         c.add(Calendar.MONTH, 1);
-        SimpleDateFormat df1 = new SimpleDateFormat("yyyy-MM");
         String formattedDate1 = df.format(c.getTime());
         formattedDate1= formattedDate1+"-01";
         

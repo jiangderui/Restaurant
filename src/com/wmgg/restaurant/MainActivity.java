@@ -8,9 +8,7 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTabHost;
-import android.util.Log;
 import android.widget.TabHost;
-import android.widget.Toast;
 
 public class MainActivity extends FragmentActivity {
 	
@@ -101,6 +99,12 @@ public class MainActivity extends FragmentActivity {
 						res.getDrawable(R.drawable.tab_icon_03));
 		mTabHost.addTab(spec, DefineDetailsFragment.class, null);
 		
+		//intent = new Intent().setClass(this, DefineDetailsActivity.class);
+		spec = mTabHost
+				.newTabSpec("设置")
+				.setIndicator("设置",
+						res.getDrawable(R.drawable.tab_icon_04));
+		mTabHost.addTab(spec, SettingFragment.class, null);
 		//set tab which one you want open first time 0 or 1 or 2
 		mTabHost.setCurrentTab(0);	
 	}
